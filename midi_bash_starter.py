@@ -1,5 +1,9 @@
 import mido
 import subprocess
+import asyncio
+
+midi_port = None
+channel = 0
 
 
 def select_input():
@@ -11,7 +15,31 @@ def select_input():
     return inputs[int(index)]
 
 
+def handle_input(message):
+    print(message)
+    script_name = './default.sh'
+    if message.channel == channel:
+        subprocess.run(['/bin/bash', script_name])
+
+
+def connect_midi(port_name):
+    mido.open_input(port_name, False, handle_input)
+
+
+async def loop():
+    while True:
+        await asyncio.sleep(0.001)
+
+
+def select_channel():
+    user_input = input('Enter channel number to listen to (default: 0)')
+    return 0 if user_input == "" else int(user_input)
+
+
 if __name__ == "__main__":
-    inp = select_input()
-    print("Selected: " + inp)
-    subprocess.run(['/bin/bash', './default.sh'])
+    port_name = select_input()
+    channel = select_channel()
+    print("Selected: " + port_name)
+    connect_midi(port_name)
+    asyncio.run(loop())
+
