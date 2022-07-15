@@ -1,12 +1,13 @@
 # midi_bash_starter
 
-### 1. Clone github repository
+## 1. Clone github repository
 ```bazaar
 git clone git@github.com:staudamm/midi_bash_starter.git
 ```
 Then enter the root directory of the project: `cd midi_bash_starter`
-### 2. Install dependecies
-####2.1 Python environment (pyenv) and required python version
+
+## 2. Install dependecies
+### 2.1 Python environment (pyenv) and required python version
 ```bazaar
 brew update
 brew install pyenv
@@ -24,13 +25,14 @@ Once pyenv is installed and configured, you can use it to
 pyenv install 3.10.3
 pyenv global 3.10.3
 ```
-####2.2 Install package requirements
+
+### 2.2 Install package requirements
 Inside the root-folder of this project, run
 ```bazaar
 pip install -r requirements.txt
 ```
 
-### 3. Run the script
+## 3. Run the script
 When you run `python midi_bach_starter.py` you are prompted to enter 
 1. The midi-device to use
 2. the midi-channel to listen to
